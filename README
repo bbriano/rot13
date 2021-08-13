@@ -1,19 +1,14 @@
 Rot13 rotates each letter by 13 place.
 
 Use:
-    $ ls * | rot13
-    YVPRAFR
-    ERNQZR
-    tb.zbq
-    ebg13.tb
-    $ ls * | rot13 | rot13
-    LICENSE
-    README
-    go.mod
-    rot13.go
+	$ ls * | rot13
+	YVPRAFR
+	ERNQZR
+	tb.zbq
+	ebg13.tb
 
 Install (go):
-    $ go install
+	$ go install
 
 Install (macOS):
-    $ brew install bbriano/bbriano/rot13
+	$ brew install bbriano/bbriano/rot13
