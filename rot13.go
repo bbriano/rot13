@@ -7,15 +7,15 @@ import (
 )
 
 func main() {
-	r := Rot13{os.Stdin}
+	r := rot13{os.Stdin}
 	io.Copy(os.Stdout, r)
 }
 
-type Rot13 struct {
+type rot13 struct {
 	r io.Reader
 }
 
-func (r Rot13) Read(buf []byte) (int, error) {
+func (r rot13) Read(buf []byte) (int, error) {
 	n, err := r.r.Read(buf)
 	for i := 0; i < n; i++ {
 		if 'A' <= buf[i] && buf[i] <= 'Z' {
