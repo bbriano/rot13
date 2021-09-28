@@ -2,39 +2,27 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
 	"io"
 	"os"
 )
 
 func main() {
-	if len(os.Args) == 1 {
-		rot13(os.Stdin)
-		return
-	}
-	for _, filename := range os.Args[1:] {
-		f, err := os.Open(filename)
-		defer f.Close()
-		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			continue
-		}
-		rot13(f)
-	}
+	r := Rot13{os.Stdin}
+	io.Copy(os.Stdout, r)
 }
 
-func rot13(r io.Reader) {
-	s := bufio.NewScanner(r)
-	for s.Scan() {
-		line := s.Bytes()
-		for i, b := range line {
-			if b >= 'A' && b <= 'Z' {
-				line[i] = (line[i]-'A'+13)%26 + 'A'
-			} else if b >= 'a' && b <= 'z' {
-				line[i] = (line[i]-'a'+13)%26 + 'a'
-			}
+type Rot13 struct {
+	r io.Reader
+}
+
+func (r Rot13) Read(buf []byte) (int, error) {
+	n, err := r.r.Read(buf)
+	for i := 0; i < n; i++ {
+		if 'A' <= buf[i] && buf[i] <= 'Z' {
+			buf[i] = 'A' + (buf[i]-'A'+13)%26
+		} else if 'a' <= buf[i] && buf[i] <= 'z' {
+			buf[i] = 'a' + (buf[i]-'a'+13)%26
 		}
-		fmt.Printf("%s\n", line)
 	}
+	return n, err
 }
