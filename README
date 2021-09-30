@@ -1,11 +1,11 @@
 Rot13 rotates each letter by 13 place.
 
-Example:
+EXAMPLE
 	$ ls * | rot13
 	YVPRAFR
 	ERNQZR
 	tb.zbq
 	ebg13.tb
 
-Install:
+INSTALL
 	$ go install github.com/bbriano/rot13
