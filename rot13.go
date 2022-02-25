@@ -12,11 +12,11 @@ func main() {
 }
 
 type rot13 struct {
-	r io.Reader
+	io.Reader
 }
 
 func (r rot13) Read(buf []byte) (int, error) {
-	n, err := r.r.Read(buf)
+	n, err := r.Read(buf)
 	for i := 0; i < n; i++ {
 		if 'A' <= buf[i] && buf[i] <= 'Z' {
 			buf[i] = 'A' + (buf[i]-'A'+13)%26
