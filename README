@@ -1,8 +1,11 @@
-Rot13 rotates each letter by 13 place.
+Rot13 rotate letters by 13 places.
 
-EXAMPLE
+Example
 	$ sed 1q rot13.go | rot13
-	// Ebg13 ebgngrf rnpu yrggre ol 13 cynpr.
+	// Ebg13 ebgngr yrggref ol 13 cynprf.
 
-INSTALL
-	$ go install github.com/bbriano/rot13/cmd/rot13@latest
+Install
+	$ go install github.com/bbriano/rot13@latest
+
+Bug
+	Rot13 only rotate letters in ascii
