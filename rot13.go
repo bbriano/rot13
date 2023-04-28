@@ -1,8 +1,9 @@
-// Rot13 rotates each letter by 13 place.
-package rot13
+// Rot13 rotate letters by 13 places.
+package main
 
 import (
 	"io"
+	"os"
 )
 
 type Rot13 struct {
@@ -19,4 +20,9 @@ func (r Rot13) Read(buf []byte) (int, error) {
 		}
 	}
 	return n, err
+}
+
+func main() {
+	r := Rot13{os.Stdin}
+	io.Copy(os.Stdout, r)
 }
